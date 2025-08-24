@@ -1,5 +1,6 @@
 import data
 import indicator
+from backtest import backtest
 def runSignalAnalysis(stocks, start, end):
     """
     Runs the indicator analysis on a list of stocks for the given date range.
@@ -10,3 +11,4 @@ def runSignalAnalysis(stocks, start, end):
         signal = indicator.indicator(stock, start, end)
         results[stock] = signal
     print(results)
+print(backtest("AAPL", "2025-07-20", "2025-08-20")) 

@@ -1,6 +1,7 @@
 key.py
 __pycache__/
 .env
+cache_*.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
