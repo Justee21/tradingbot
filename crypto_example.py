@@ -11,16 +11,23 @@ from backtest import backtest
 def example_crypto_signals():
     """Analyze multiple cryptocurrencies and get Buy/Sell/Hold signals."""
     cryptos = ["BTC/USDT", "ETH/USDT", "BNB/USDT"]
-    start = "2024-01-01"
-    end = "2024-12-31"
+    start = "2025-01-01"
+    end = "2025-12-31"
     
     print("Running crypto signal analysis...")
     results = {}
     for crypto in cryptos:
-        signal_result = indicator.indicator(crypto, start, end, asset_type="crypto")
-        signal_str, signal_strength = signal_result
-        results[crypto] = f"{signal_str} (strength: {signal_strength})"
-        print(f"{crypto}: {signal_str} (strength: {signal_strength})")
+        try:
+            signal_result = indicator.indicator(crypto, start, end, asset_type="crypto")
+            if isinstance(signal_result, tuple) and len(signal_result) == 2:
+                signal_str, signal_strength = signal_result
+            else:
+                signal_str, signal_strength = "Hold", 0
+            results[crypto] = f"{signal_str} (strength: {signal_strength})"
+            print(f"{crypto}: {signal_str} (strength: {signal_strength})")
+        except Exception as exc:
+            print(f"{crypto}: error getting signal ({exc})")
+            results[crypto] = "Error"
     
     return results
 
@@ -28,8 +35,8 @@ def example_crypto_signals():
 def example_crypto_backtest():
     """Backtest a trading strategy on Bitcoin."""
     crypto_symbol = "BTC/USDT"
-    start = "2024-01-01"
-    end = "2024-12-31"
+    start = "2025-01-01"
+    end = "2025-12-31"
     initial_investment = 10000
     
     print(f"\nBacktesting {crypto_symbol} from {start} to {end}...")
@@ -41,8 +48,8 @@ def example_crypto_backtest():
 def example_fetch_crypto_data():
     """Fetch cryptocurrency data directly."""
     crypto_symbol = "BTC/USDT"
-    start = "2024-01-01"
-    end = "2024-12-31"
+    start = "2025-01-01"
+    end = "2025-12-31"
     
     print(f"\nFetching data for {crypto_symbol}...")
     df = data.getCryptoData(crypto_symbol, start=start, end=end, exchange="binance")
@@ -54,9 +61,9 @@ def example_fetch_crypto_data():
 # Example 4: Compare multiple cryptocurrencies
 def example_compare_cryptos():
     """Compare backtest results for multiple cryptocurrencies."""
-    cryptos = ["BTC/USDT", "ETH/USDT"]
-    start = "2024-01-01"
-    end = "2024-12-31"
+    cryptos = ["ETH/USDT", "BNB/USDT"]
+    start = "2025-01-01"
+    end = "2025-12-31"
     
     print("\nComparing cryptocurrency backtests...")
     results = {}
@@ -75,8 +82,8 @@ def example_compare_cryptos():
 def example_different_exchanges():
     """Fetch data from different crypto exchanges."""
     crypto_symbol = "BTC/USDT"
-    start = "2024-01-01"
-    end = "2024-01-31"
+    start = "2025-01-01"
+    end = "2025-01-31"
     
     exchanges = ["binance", "coinbase", "kraken"]
     

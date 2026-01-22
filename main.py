@@ -1,40 +1,26 @@
-import data
-import indicator
-from backtest import backtest
+from crypto_example import (
+    example_compare_cryptos,
+    example_crypto_backtest,
+    example_crypto_signals,
+    example_different_exchanges,
+    example_fetch_crypto_data,
+)
 
-def runSignalAnalysis(stocks, start, end):
-    """
-    Runs the indicator analysis on a list of stocks for the given date range.
-    Returns a dictionary with stock symbols as keys and their corresponding Buy/Sell/Hold signals as values.
-    """
-    results = {}
-    for stock in stocks:
-        signal_result = indicator.indicator(stock, start, end, asset_type="stock")
-        signal_str, signal_strength = signal_result
-        results[stock] = f"{signal_str} (strength: {signal_strength})"
-    print(results)
-    return results
 
-def runCryptoSignalAnalysis(cryptos, start, end):
-    """
-    Runs the indicator analysis on a list of cryptocurrencies for the given date range.
-    Returns a dictionary with crypto symbols as keys and their corresponding Buy/Sell/Hold signals as values.
-    
-    Args:
-        cryptos: List of crypto symbols (e.g., ['BTC/USDT', 'ETH/USDT'])
-        start: Start date in 'YYYY-MM-DD' format
-        end: End date in 'YYYY-MM-DD' format
-    """
-    results = {}
-    for crypto in cryptos:
-        signal_result = indicator.indicator(crypto, start, end, asset_type="crypto")
-        signal_str, signal_strength = signal_result
-        results[crypto] = f"{signal_str} (strength: {signal_strength})"
-    print(results)
-    return results
+if __name__ == "__main__":
+    print("=== Crypto examples ===")
+    crypto_signals = example_crypto_signals()
+    crypto_gain = example_crypto_backtest()
+    print(f"\nCrypto signal summary: {crypto_signals}")
+    if crypto_gain is None:
+        print("Crypto backtest gain: n/a (insufficient data)")
+    else:
+        print(f"Crypto backtest gain: {crypto_gain:.2f}%")
 
-# Example usage for stocks
-# print(backtest("AAPL", "2025-07-20", "2025-08-20", asset_type="stock"))
+    print("\n=== Additional crypto backtests (ETH + BNB) ===")
+    crypto_comparison = example_compare_cryptos()
+    print(f"\nCrypto comparison summary: {crypto_comparison}")
 
-# Example usage for crypto
-# print(backtest("BTC/USDT", "2025-07-20", "2025-08-20", asset_type="crypto")) 
+    # Uncomment to run additional crypto examples
+    # example_fetch_crypto_data()
+    # example_different_exchanges()
