@@ -1,7 +1,7 @@
 # TradeBot - Stock & Crypto Signal Generator
 
 Overall Description:
-This project uses various strategies which analyze stocks and cryptocurrencies to generate a Buy, Sell, or Hold signal. This model receives a given stock/crypto symbol and a start and end date. From these parameters the model calculates 5 moving averages (of equal length) across the window, the upper and lower Bollinger Bands, and the Relative Strength Index (RSI). This model uses these calculations to return a Buy, Sell, or Hold signal. The calculations required to produce a Buy signal are: all of the moving averages increasing as time progresses, the lower bollinger band being greater than the stock price and the moving averages decreasing as time progresses, the RSI being less than 30 and the moving averages decreasing as time progresses. The calculations required to produce a Sell signal are: all of the moving averages decreasing as time progresses, the upper bollinger band being less than the stock price and the moving averages increasing as time progresses, the RSI being greater than 70 and the moving averages increasing as time progresses. There needs to be greater buy signals than sell signals to return buy and to return sell there needs to be greater sell signals than buy signals, otherwise hold will be returned. Additionally, the bot can be backtested historically to test it's performance in the past on a certain stock or cryptocurrency.
+TradeBot analyzes stocks and cryptocurrencies and returns a Buy, Sell, or Hold signal for a given symbol and date range. It builds a composite signal using five moving averages, Bollinger Bands, and RSI, then scores the market conditions. Uptrend momentum and oversold signals contribute to Buy scores, while downtrend momentum and overbought signals contribute to Sell scores. The final decision is based on which side has the stronger signal, with Hold returned when the signals are balanced. The same strategy can also be backtested to evaluate historical performance on stocks or crypto.
 
 Tech Stack:
 - Python
@@ -64,13 +64,15 @@ df = data.getCryptoData("BTC/USDT", start="2024-01-01", end="2024-12-31", exchan
 Backtest:
 Trading bot backtested AAPL from July 20th to August 20th yielding a 6.93% gain over the course of the month, beating the stock's price gain.
 
-**Stock Example:**
-Graph of the change in value of the portfolio starting with an initial investment of 10,000:
-<img width="638" height="479" alt="Screenshot 2025-08-24 at 6 56 06 PM" src="https://github.com/user-attachments/assets/d1574466-06a1-4ae0-97e6-c35f422ba75c" />
+**Crypto Examples:**
+Crypto backtest example showing BTC-USD performance over the course of 2025:
+<img width="624" height="472" alt="btc2025" src="https://github.com/user-attachments/assets/19eb8681-3ec9-447e-90ea-10af7e63db51" />
 
-**Crypto Example:**
-Crypto backtest example showing BTC-USD performance from November 2022 to February 2023:
-<img width="636" height="474" alt="bitcoingrow" src="https://github.com/user-attachments/assets/726299cc-daf7-43c6-929e-a2688b705db8" />
+Crypto backtest example showing ETH-USD performance over the course of 2025:
+<img width="631" height="476" alt="Screenshot 2026-01-22 at 5 50 50 PM" src="https://github.com/user-attachments/assets/4031b8bf-8482-4751-b8d7-282758c90c1e" />
+
+Crypto backtest example showing BNB-USD performance over the course of 2025:
+<img width="632" height="472" alt="Screenshot 2026-01-22 at 5 51 08 PM" src="https://github.com/user-attachments/assets/9d9f1909-551f-4042-be22-c91c877f619e" />
 
 
 To-Do:
