@@ -64,8 +64,14 @@ df = data.getCryptoData("BTC/USDT", start="2024-01-01", end="2024-12-31", exchan
 Backtest:
 Trading bot backtested AAPL from July 20th to August 20th yielding a 6.93% gain over the course of the month, beating the stock's price gain.
 
+**Stock Example:**
 Graph of the change in value of the portfolio starting with an initial investment of 10,000:
 <img width="638" height="479" alt="Screenshot 2025-08-24 at 6 56 06 PM" src="https://github.com/user-attachments/assets/d1574466-06a1-4ae0-97e6-c35f422ba75c" />
+
+**Crypto Example:**
+Crypto backtest example showing BTC-USD performance from November 2022 to February 2023:
+<img width="636" height="474" alt="bitcoingrow" src="https://github.com/user-attachments/assets/726299cc-daf7-43c6-929e-a2688b705db8" />
+
 
 To-Do:
 - Add Flask front-end
